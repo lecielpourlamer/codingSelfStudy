@@ -42,7 +42,7 @@ public class ArticleController {
         //System.out.println("saved.toString() = " + saved.toString());
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId();  // redirect를 작성할 위치
     }
 
 

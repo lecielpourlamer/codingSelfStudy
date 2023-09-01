@@ -20,24 +20,26 @@ public class MemberController {
     @Autowired
     private MemberRepository memberRepository;
 
+    @GetMapping("/members/new")
+    public String newMemberForm() {
+        return "members/new";
+    }
+
     @GetMapping("/signup")
-    public String signup() {
+    public String signupPage() {
         return "members/new";
     }
 
     @PostMapping("/join")
     public String join(MemberForm memberForm) {
-        //System.out.println(memberForm.toString());
         log.info("memberForm.toString() = " + memberForm.toString());
 
         Member member = memberForm.toEntity();
-        //System.out.println(member.toString());
         log.info("member.toString() = " + member.toString());
 
         Member saved = memberRepository.save(member);
-        //System.out.println(saved.toString());
         log.info("saved.toString() = " + saved.toString());
-        return "";
+        return "redirect:/members/" + saved.getId();
     }
 
     @GetMapping("/members/{id}")
