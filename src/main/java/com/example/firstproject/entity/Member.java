@@ -20,6 +20,7 @@ public class Member {
     @GeneratedValue
     private Long id;
 
+    @Column
     private String email;
 
     @Column
