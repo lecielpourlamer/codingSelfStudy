@@ -6,6 +6,7 @@ import com.example.firstproject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +69,7 @@ public class ArticleService {
         return target;
     }
 
+    @Transactional
     public List<Article> createArticles(List<ArticleForm> dtos) {
         // 1. dto 묶음을 엔티티 묶음으로 변환하기
         List<Article> articleList = dtos.stream()   // 1.dtos를 스트림화하기, 4.최종 결과를 articleList에 저장
