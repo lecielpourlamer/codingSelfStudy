@@ -19,10 +19,12 @@ public class ArticleService {
     private ArticleRepository articleRepository;    // 게시글 리파지터리 객체 주입
 
     public List<Article> index() {
+
         return articleRepository.findAll();
     }
 
     public Article show(Long id) {
+
         return articleRepository.findById(id).orElse(null);
     }
 
