@@ -24,7 +24,7 @@ public class CommentApiController {
     }
 
     @PostMapping("/api/articles/{articleId}/comments")  // 댓글 생성 요청 접수
-    private ResponseEntity<CommentDto> create(@PathVariable Long articleId,
+    public ResponseEntity<CommentDto> create(@PathVariable Long articleId,
                                               @RequestBody CommentDto dto) {
         // 서비스에 위임
         CommentDto createdDto = commentService.create(articleId, dto);
@@ -32,4 +32,44 @@ public class CommentApiController {
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id,
+                                             @RequestBody CommentDto dto) {
+        // 서비스에 위임
+        CommentDto updatedDto = commentService.update(id, dto);
+        // 결과 응답
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+    }
+
+    @DeleteMapping("/api/comments/{id}")    // 댓글 삭제 요청 접수
+    public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
+        // 서비스에 위임
+        CommentDto deletedDto = commentService.delete(id);
+        // 결과 응답
+        return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
+    }
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
